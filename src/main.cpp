@@ -319,20 +319,10 @@ int main(int argc, char* args[])
 	}
 	memset(fb, 0, 128);
 
-	snake.tail = &snake.head;
-	reset();
-	while (running) {
-		while (poll(&evpoll, 1, 0) > 0)
-			handle_events(evpoll.fd);
-		game_logic();
-		if (check_collision(0)) {
-			reset();
-		}
-		render();
-		usleep (300000);
+	while (1) {
+		fb->pixel[0][0]=0xF800;
 	}
 	memset(fb, 0, 128);
-	reset();
 	munmap(fb, 128);
 err_fb:
 	close(fbfd);
