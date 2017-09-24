@@ -95,7 +95,6 @@ int main(int argc, char* argv[]) {
 	int fbfd = 0;
 	fbfd = open_fbdev("RPi-Sense FB");
 	if (fbfd <= 0) {
-		ret = fbfd;
 		printf("Error: cannot open framebuffer device.\n");
 		return -1;
 
