@@ -114,8 +114,6 @@ int main(int argc, char* args[]) {
 	struct pollfd evpoll;
 	evpoll.events = POLLIN;
 
-	srand (time(NULL));
-
 	evpoll.fd = open_evdev("Raspberry Pi Sense HAT Joystick");
 	if (evpoll.fd < 0) {
 		fprintf(stderr, "Event device not found.\n");
