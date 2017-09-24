@@ -20,7 +20,6 @@
 #include <linux/fb.h>
 #include <sys/mman.h>
 #include <sys/ioctl.h>
-#include <time.h>
 #include <poll.h>
 #include <dirent.h>
 #include <string.h>
@@ -35,19 +34,16 @@ struct fb_t {
 
 struct fb_t *fb;
 
-static int is_event_device(const struct dirent *dir)
-{
+static int is_event_device(const struct dirent *dir) {
 	return strncmp(EVENT_DEV_NAME, dir->d_name,
 		       strlen(EVENT_DEV_NAME)-1) == 0;
 }
-static int is_framebuffer_device(const struct dirent *dir)
-{
+static int is_framebuffer_device(const struct dirent *dir) {
 	return strncmp(FB_DEV_NAME, dir->d_name,
 		       strlen(FB_DEV_NAME)-1) == 0;
 }
 
-static int open_evdev(const char *dev_name)
-{
+static int open_evdev(const char *dev_name) {
 	struct dirent **namelist;
 	int i, ndev;
 	int fd = -1;
@@ -78,8 +74,7 @@ static int open_evdev(const char *dev_name)
 	return fd;
 }
 
-static int open_fbdev(const char *dev_name)
-{
+static int open_fbdev(const char *dev_name) {
 	struct dirent **namelist;
 	int i, ndev;
 	int fd = -1;
@@ -89,30 +84,31 @@ static int open_fbdev(const char *dev_name)
 	if (ndev <= 0)
 		return ndev;
 
-	for (i = 0; i < ndev; i++)
-	{
+	for(i = 0; i < ndev; i++) {
 		char fname[64];
 		char name[256];
 
 		snprintf(fname, sizeof(fname),
 			 "%s/%s", DEV_FB, namelist[i]->d_name);
 		fd = open(fname, O_RDWR);
-		if (fd < 0)
+		if(fd < 0) {
 			continue;
+		}
 		ioctl(fd, FBIOGET_FSCREENINFO, &fix_info);
-		if (strcmp(dev_name, fix_info.id) == 0)
+		if(strcmp(dev_name, fix_info.id) == 0) {
 			break;
+		}
 		close(fd);
 		fd = -1;
 	}
-	for (i = 0; i < ndev; i++)
+	for(i = 0; i < ndev; i++) {
 		free(namelist[i]);
+	}
 
 	return fd;
 }
 
-int main(int argc, char* args[])
-{
+int main(int argc, char* args[]) {
 	int ret = 0;
 	int fbfd = 0;
 	struct pollfd evpoll;
