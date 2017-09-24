@@ -33,8 +33,42 @@ struct fb_t {
 
 struct fb_t *fb;
 
+static int is_event_device(const struct dirent *dir) {
+	return strncmp(EVENT_DEV_NAME, dir->d_name, strlen(EVENT_DEV_NAME)-1) == 0;
+}
 static int is_framebuffer_device(const struct dirent *dir) {
 	return strncmp(FB_DEV_NAME, dir->d_name, strlen(FB_DEV_NAME)-1) == 0;
+}
+
+static int open_evdev(const char *dev_name) {
+	struct dirent **namelist;
+	int i, ndev;
+	int fd = -1;
+
+	ndev = scandir(DEV_INPUT_EVENT, &namelist, is_event_device, versionsort);
+	if (ndev <= 0)
+		return ndev;
+
+	for (i = 0; i < ndev; i++)
+	{
+		char fname[64];
+		char name[256];
+
+		snprintf(fname, sizeof(fname),
+			 "%s/%s", DEV_INPUT_EVENT, namelist[i]->d_name);
+		fd = open(fname, O_RDONLY);
+		if (fd < 0)
+			continue;
+		ioctl(fd, EVIOCGNAME(sizeof(name)), name);
+		if (strcmp(dev_name, name) == 0)
+			break;
+		close(fd);
+	}
+
+	for (i = 0; i < ndev; i++)
+		free(namelist[i]);
+
+	return fd;
 }
 
 static int open_fbdev(const char *dev_name) {
@@ -74,6 +108,15 @@ static int open_fbdev(const char *dev_name) {
 int main(int argc, char* args[]) {
 	int ret = 0;
 	int fbfd = 0;
+	struct pollfd evpoll;
+	evpoll.events = POLLIN;
+
+	evpoll.fd = open_evdev("Raspberry Pi Sense HAT Joystick");
+	if (evpoll.fd < 0) {
+		fprintf(stderr, "Event device not found.\n");
+		return evpoll.fd;
+	}
+
 	fbfd = open_fbdev("RPi-Sense FB");
 	if (fbfd <= 0) {
 		ret = fbfd;
@@ -97,5 +140,7 @@ int main(int argc, char* args[]) {
 	munmap(fb, 128);
 err_fb:
 	close(fbfd);
+err_ev:
+	close(evpoll.fd);
 	return ret;
 }
