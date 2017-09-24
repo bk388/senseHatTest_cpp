@@ -189,7 +189,7 @@ void game_logic(void)
 		seg_i->y = seg_i->next->y;
 	}
 	if (check_collision(1)) {
-		new_tail = malloc(sizeof(struct segment_t));
+		new_tail = (segment_t*)malloc(sizeof(struct segment_t));
 		if (!new_tail) {
 			printf("Ran out of memory.\n");
 			running = 0;
@@ -293,7 +293,7 @@ int main(int argc, char* args[])
 	int ret = 0;
 	int fbfd = 0;
 	struct pollfd evpoll = {
-		.events = POLLIN,
+		.events = POLLIN
 	};
 
 	srand (time(NULL));
@@ -312,7 +312,7 @@ int main(int argc, char* args[])
 
 	}
 
-	fb = mmap(0, 128, PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
+	fb = (fb_t*)mmap(0, 128, PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
 	if (!fb) {
 		ret = EXIT_FAILURE;
 		printf("Failed to mmap.\n");
