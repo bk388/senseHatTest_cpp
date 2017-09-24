@@ -30,18 +30,16 @@
 
 
 struct fb_t {
-	uint32_t pixel[8][8];
+	uint16_t pixel[8][8];
 };
 
 struct fb_t *fb;
 
 static int is_event_device(const struct dirent *dir) {
-	return strncmp(EVENT_DEV_NAME, dir->d_name,
-		       strlen(EVENT_DEV_NAME)-1) == 0;
+	return strncmp(EVENT_DEV_NAME, dir->d_name, strlen(EVENT_DEV_NAME)-1) == 0;
 }
 static int is_framebuffer_device(const struct dirent *dir) {
-	return strncmp(FB_DEV_NAME, dir->d_name,
-		       strlen(FB_DEV_NAME)-1) == 0;
+	return strncmp(FB_DEV_NAME, dir->d_name, strlen(FB_DEV_NAME)-1) == 0;
 }
 
 static int open_evdev(const char *dev_name) {
@@ -138,7 +136,7 @@ int main(int argc, char* args[]) {
 	memset(fb, 0, 128);
 
 	while (1) {
-		fb->pixel[0][0]=0xff000000;
+		fb->pixel[0][0]=10000*(args[1][0]-48) + 1000*(args[1][1]-48) + 100*(args[1][2]-48) + 10*(args[1][3]-48) + (args[1][4]-48);
 	}
 	memset(fb, 0, 128);
 	munmap(fb, 128);
