@@ -8,8 +8,6 @@
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif //_GNU_SOURCE
-#define DEV_INPUT_EVENT "/dev/input"
-#define EVENT_DEV_NAME "event"
 #define DEV_FB "/dev"
 #define FB_DEV_NAME "fb"
 
