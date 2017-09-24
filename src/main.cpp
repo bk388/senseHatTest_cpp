@@ -292,9 +292,8 @@ int main(int argc, char* args[])
 {
 	int ret = 0;
 	int fbfd = 0;
-	struct pollfd evpoll = {
-		.events = POLLIN
-	};
+	struct pollfd evpoll;
+	evpoll.events = POLLIN;
 
 	srand (time(NULL));
 
