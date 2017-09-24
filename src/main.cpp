@@ -24,9 +24,7 @@
 #include <poll.h>
 #include <dirent.h>
 #include <string.h>
-
 #include <linux/input.h>
-#include <linux/fb.h>
 
 
 struct fb_t {
