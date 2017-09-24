@@ -138,7 +138,7 @@ int main(int argc, char* args[]) {
 	memset(fb, 0, 128);
 
 	while (1) {
-		fb->pixel[0][0]=0x0000ff;
+		fb->pixel[0][0]=0x0000ff00;
 	}
 	memset(fb, 0, 128);
 	munmap(fb, 128);
