@@ -78,7 +78,7 @@ int main(int argc, char* args[]) {
 	if (fbfd <= 0) {
 		ret = fbfd;
 		printf("Error: cannot open framebuffer device.\n");
-		goto err_ev;
+		goto label_end;
 
 	}
 
@@ -97,5 +97,6 @@ int main(int argc, char* args[]) {
 	munmap(fb, 128);
 err_fb:
 	close(fbfd);
+label_end:
 	return ret;
 }
