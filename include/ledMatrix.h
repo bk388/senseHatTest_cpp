@@ -54,7 +54,7 @@ int open_fbdev(const char *dev_name) {
 
 class LEDMatrix {
 public:
-	int LEDMatrix();
+	void LEDMatrix();
 	void setScreen(uint16_t img[8][8]);
 	void showImage(uint16_t img[8][8][3]);
 /*	void setPixel(int xCoord, int yCoord, uint16_t value);

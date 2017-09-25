@@ -14,18 +14,14 @@ struct fb_t {
 };
 
 int LEDMatrix::LEDMatrix() {
-	int ret = 0;
-
 	LEDMatrix::fbfd = 0;
 	LEDMatrix::fbfd = open_fbdev("RPi-Sense FB");
 	if (fbfd <= 0) {
-		ret = LEDMatrix::fbfd;
 		goto label_end;
 	}
 
 	LEDMatrix::fb = (fb_t*)mmap(0, 128, PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
 	if (!LEDMatrix::fb) {
-		ret = EXIT_FAILURE;
 		printf("Failed to mmap.\n");
 		goto err_fb;
 	}
@@ -33,7 +29,7 @@ int LEDMatrix::LEDMatrix() {
 	err_fb:
 		close(LEDMatrix::fbfd);
 	label_end:
-		return ret;
+		return;
 }
 
 void LEDMatrix::setScreen(uint16_t img[8][8]) {
