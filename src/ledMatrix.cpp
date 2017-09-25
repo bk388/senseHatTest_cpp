@@ -16,10 +16,6 @@
 #include <string.h>
 #include "ledMatrix.h"
 
-struct fb_t {
-	uint16_t pixel[8][8];
-};
-
 LEDMatrix::LEDMatrix() {
 	return;
 }

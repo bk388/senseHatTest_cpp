@@ -18,10 +18,13 @@
 #include <string.h>
 #endif //LEDMATRIX_H
 
-extern struct fb_t;
 extern int is_framebuffer_device(const struct dirent *dir);
 extern int open_fbdev(const char *dev_name);
 //...
+
+struct fb_t {
+	uint16_t pixel[8][8];
+};
 
 class LEDMatrix {
 public:
