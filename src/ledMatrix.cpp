@@ -17,19 +17,14 @@ LEDMatrix::LEDMatrix() {
 	LEDMatrix::fbfd = 0;
 	LEDMatrix::fbfd = open_fbdev("RPi-Sense FB");
 	if (fbfd <= 0) {
-		goto label_end;
+		return;
 	}
 
 	LEDMatrix::fb = (fb_t*)mmap(0, 128, PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
 	if (!LEDMatrix::fb) {
 		printf("Failed to mmap.\n");
-		goto err_fb;
-	}
-
-	err_fb:
-		close(LEDMatrix::fbfd);
-	label_end:
 		return;
+	}
 }
 
 void LEDMatrix::setScreen(uint16_t img[8][8]) {
@@ -59,5 +54,5 @@ void LEDMatrix::showImage(uint16_t img[8][8][3]) {
 void LEDMatrix::*/
 
 void LEDMatrix::closeScreen() {
-	close(LEDMatrix::fbfd);
+	close(LEDMatrix::fd);
 }
