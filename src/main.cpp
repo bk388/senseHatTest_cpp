@@ -13,7 +13,6 @@
 #define FB_DEV_NAME "fb"
 
 #include "RTIMULib.h"
-#include "ledMatrix.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -23,7 +22,9 @@
 #include <sys/ioctl.h>
 #include <dirent.h>
 #include <string.h>
+#include "ledMatrix.h"
 
 int main(int argc, char* args[]) {
+	LEDMatrix ledMat;
 	printf("echo\n");
 }
