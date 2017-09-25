@@ -34,6 +34,7 @@ public:
 	void showImage(uint8_t img[8][8][3]);
 	void setPixel(int xCoord, int yCoord, uint16_t value);
 	void setRGBPixel(int xCoord, int yCoord, uint8_t red, uint8_t green, uint8_t blue);
+	void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double smoothness);
 private:
 	struct fb_t *fb;
 	int fbfd;
