@@ -13,7 +13,7 @@ struct fb_t {
 	uint16_t pixel[8][8];
 };
 
-int LEDMatrix::LEDMatrix() {
+LEDMatrix::LEDMatrix() {
 	LEDMatrix::fbfd = 0;
 	LEDMatrix::fbfd = open_fbdev("RPi-Sense FB");
 	if (fbfd <= 0) {
