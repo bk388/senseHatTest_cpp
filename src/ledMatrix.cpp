@@ -16,22 +16,22 @@ struct fb_t {
 int LEDMatrix::LEDMatrix() {
 	int ret = 0;
 
-	fbfd = 0;
-	fbfd = open_fbdev("RPi-Sense FB");
+	LEDMatrix::fbfd = 0;
+	LEDMatrix::fbfd = open_fbdev("RPi-Sense FB");
 	if (fbfd <= 0) {
-		ret = fbfd;
+		ret = LEDMatrix::fbfd;
 		goto label_end;
 	}
 
-	fb = (fb_t*)mmap(0, 128, PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
-	if (!fb) {
+	LEDMatrix::fb = (fb_t*)mmap(0, 128, PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
+	if (!LEDMatrix::fb) {
 		ret = EXIT_FAILURE;
 		printf("Failed to mmap.\n");
 		goto err_fb;
 	}
 
 	err_fb:
-		close(fbfd);
+		close(LEDMatrix::fbfd);
 	label_end:
 		return ret;
 }
@@ -39,7 +39,7 @@ int LEDMatrix::LEDMatrix() {
 void LEDMatrix::setScreen(uint16_t img[8][8]) {
 	for(int ii=0;ii<8;ii++) {
 		for(int jj=0;jj<8;jj++) {
-			fb->pixel[ii][jj] = img[ii][jj];
+			LEDMatrix::fb->pixel[ii][jj] = img[ii][jj];
 		}
 	}
 }
@@ -55,7 +55,7 @@ void LEDMatrix::showImage(uint16_t img[8][8][3]) {
 			img16bit[ii][jj] = ((uint16_t)red5bits<<11)|((uint16_t)green6bits<<5)|((uint16_t)blue5bits);
 		}
 	}
-	setScreen(img16bit);
+	LEDMatrix::setScreen(img16bit);
 }
 
 /*void LEDMatrix::
