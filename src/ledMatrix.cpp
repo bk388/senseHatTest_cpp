@@ -33,6 +33,10 @@ LEDMatrix::LEDMatrix() {
 	memset(LEDMatrix::fb, 0, 128);
 }
 
+void LEDMatrix::setPixel(int xCoord, int yCoord, uint16_t value) {
+	LEDMatrix::fb->pixel[xCoord][yCoord] = value;
+}
+
 int is_framebuffer_device(const struct dirent *dir) {
 	return strncmp(FB_DEV_NAME, dir->d_name, strlen(FB_DEV_NAME)-1) == 0;
 }
