@@ -8,9 +8,9 @@ OBJPATH		= ../obj
 LDFLAGS         += -lRTIMULib -lbluetooth
 CFLAGS          = -I$(INCPATH)
 
-_DEPS		= 
+_DEPS		= ledMatrix.h
 DEPS		= $(patsubst %,$(INCPATH)/%,$(_DEPS))
-_OBJ		= main.o
+_OBJ		= main.o ledMatrix.o
 OBJ			= $(patsubst %,$(OBJPATH)/%,$(_OBJ))
 
 $(OBJPATH)/%.o : %.cpp $(DEPS)
