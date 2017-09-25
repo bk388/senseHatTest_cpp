@@ -31,6 +31,5 @@ int main(int argc, char* args[]) {
 			image[7][ii][2] = 0xff;
 		}
 		ledMat.showImage(image);
-		delete image;
 	}
 }
