@@ -60,7 +60,7 @@ public:
 /*	void setPixel(int xCoord, int yCoord, uint16_t value);
 	void setRGBPixel(int xCoord, int yCoord, uint8_t red, uint8_t green, uint8_t blue);
 	void clearPixel(int xCoord, int yCoord);*/
-	void close();
+	void closeScreen();
 private:
 	struct fb_t *fb;
 	int fbfd;

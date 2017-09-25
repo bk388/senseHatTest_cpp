@@ -58,6 +58,6 @@ void LEDMatrix::showImage(uint16_t img[8][8][3]) {
 
 void LEDMatrix::*/
 
-void LEDMatrix::close() {
-	close(fbfd);
+void LEDMatrix::closeScreen() {
+	close(LEDMatrix::fbfd);
 }
