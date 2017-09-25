@@ -6,8 +6,11 @@
 #include <linux/fb.h>
 #include <sys/mman.h>
 #include <sys/ioctl.h>
+#include <time.h>
+#include <poll.h>
 #include <dirent.h>
 #include <string.h>
+#include <linux/input.h>
 
 struct fb_t {
 	uint16_t pixel[8][8];
