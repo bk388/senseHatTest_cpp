@@ -16,6 +16,7 @@
 #include <string.h>
 #include "ledMatrix.h"
 
+/* Constructor of LEDMatrix */
 LEDMatrix::LEDMatrix() {
 	LEDMatrix::fbfd = 0;
 	LEDMatrix::fbfd = open_fbdev("RPi-Sense FB");
@@ -33,6 +34,7 @@ LEDMatrix::LEDMatrix() {
 	memset(LEDMatrix::fb, 0, 128);
 }
 
+/* Destructor of LEDMatrix */
 LEDMatrix::~LEDMatrix() {
 	for(int ii=0;ii<8;ii++) {
 		for(int jj=0;jj<8;jj++) {
@@ -42,9 +44,23 @@ LEDMatrix::~LEDMatrix() {
 	close(LEDMatrix::fbfd);
 }
 
+/* Sets one pixel to a given 16bit colour */
 void LEDMatrix::setPixel(int xCoord, int yCoord, uint16_t value) {
 	LEDMatrix::fb->pixel[xCoord][yCoord] = value;
 }
+
+/* Sets one pixel to the 16bit colour that is closer to te specified 24bit RGB
+ * The colours are represented on 16 bits: 5 for red, 6 for green, 5 for blue */
+void LEDMatrix::setRGBPixel(int xCoord, int yCoord, uint8_t red, uint8_t green, uint8_t blue) {
+	uint16_t red16bits, green16bits, blue16bits;
+	/* Will not overflow, since an 8bit number multiplied by 31 is at most 13 bits long */
+	red16bits = ((red*31)/255);		//31:max value of a 5bit number; 255:max value for an 8bit number; note that the multiplication is first
+	green16bits = ((green*63)/255);	//63:max value of a 6bit number; 255:max value for an 8bit number; note that the multiplication is first
+	blue16bits = ((blue*31)/255);	//31:max value of a 5bit number; 255:max value for an 8bit number; note that the multiplication is first
+	LEDMatrix::fb->pixel[xCoord][yCoord] = ((red16bits<<11)|(green16bits<<5)|blue16bits);
+}
+
+/* The following two functons were copied from the example code snake.c that comes with RTIMULib: */
 
 int is_framebuffer_device(const struct dirent *dir) {
 	return strncmp(FB_DEV_NAME, dir->d_name, strlen(FB_DEV_NAME)-1) == 0;
