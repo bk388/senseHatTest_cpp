@@ -26,5 +26,5 @@
 
 int main(int argc, char* args[]) {
 	LEDMatrix ledMat;
-	ledMat.setPixel(0, 0, 0);
+	ledMat.setPixel(0, 0, 0xff);
 }

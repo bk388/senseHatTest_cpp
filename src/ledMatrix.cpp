@@ -33,6 +33,15 @@ LEDMatrix::LEDMatrix() {
 	memset(LEDMatrix::fb, 0, 128);
 }
 
+LEDMatrix::~LEDMatrix() {
+	for(int ii=0;ii<8;ii++) {
+		for(int jj=0;jj<8;jj++) {
+			LEDMatrix::fb->pixel[ii][jj] = 0;
+		}
+	}
+	close(LEDMatrix::fbfd);
+}
+
 void LEDMatrix::setPixel(int xCoord, int yCoord, uint16_t value) {
 	LEDMatrix::fb->pixel[xCoord][yCoord] = value;
 }
