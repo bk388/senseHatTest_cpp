@@ -11,13 +11,8 @@
 #include <linux/fb.h>
 #include <sys/mman.h>
 #include <sys/ioctl.h>
-#include <time.h>
-#include <poll.h>
 #include <dirent.h>
 #include <string.h>
-
-#include <linux/input.h>
-#include <linux/fb.h>
 
 int is_framebuffer_device(const struct dirent *dir) {
 	return strncmp(FB_DEV_NAME, dir->d_name, strlen(FB_DEV_NAME)-1) == 0;
