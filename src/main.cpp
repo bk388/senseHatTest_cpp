@@ -26,6 +26,5 @@
 
 int main(int argc, char* args[]) {
 	LEDMatrix ledMat;
-	//ledMat.setPixel(0, 0, )
-	printf("echo\n");
+	ledMat.setPixel(0, 0, 0x1f)
 }
