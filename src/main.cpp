@@ -12,6 +12,7 @@
 #define FB_DEV_NAME "fb"
 
 #include "RTIMULib.h"
+#include "ledMatrix.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>

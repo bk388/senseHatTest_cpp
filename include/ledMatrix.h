@@ -56,9 +56,10 @@ class LEDMatrix {
 public:
 	int LEDMatrix();
 	void setScreen(uint16_t img[8][8]);
-	void setPixel(int xCoord, int yCoord, uint16_t value);
+	void showImage(uint16_t img[8][8][3]);
+/*	void setPixel(int xCoord, int yCoord, uint16_t value);
 	void setRGBPixel(int xCoord, int yCoord, uint8_t red, uint8_t green, uint8_t blue);
-	void clearPixel(int xCoord, int yCoord);
+	void clearPixel(int xCoord, int yCoord);*/
 	void close();
 private:
 	struct fb_t *fb;
