@@ -24,7 +24,7 @@ LEDMatrix::LEDMatrix() {
 		return;
 	}
 
-	LEDMatrix::fb = mmap(0, 128, PROT_READ | PROT_WRITE, MAP_SHARED, LEDMatrix::fbfd, 0);
+	LEDMatrix::fb = (fb_t*)mmap(0, 128, PROT_READ | PROT_WRITE, MAP_SHARED, LEDMatrix::fbfd, 0);
 	if (!LEDMatrix::fb) {
 		printf("Failed to mmap.\n");
 		close(LEDMatrix::fbfd);
