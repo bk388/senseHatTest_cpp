@@ -1,3 +1,5 @@
+#ifndef LEDMATRIX_H
+#define LEDMATRIX_H
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif //_GNU_SOURCE
@@ -14,6 +16,7 @@
 #include <sys/ioctl.h>
 #include <dirent.h>
 #include <string.h>
+#endif //LEDMATRIX_H
 
 struct fb_t {
 	uint16_t pixel[8][8];
