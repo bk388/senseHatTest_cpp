@@ -60,6 +60,30 @@ void LEDMatrix::setRGBPixel(int xCoord, int yCoord, uint8_t red, uint8_t green, 
 	LEDMatrix::fb->pixel[xCoord][yCoord] = ((red16bits<<11)|(green16bits<<5)|blue16bits);
 }
 
+/* Sets all the pixels using an 8x8 array of 16bit numbers */
+void LEDMatrix::setScreen(uint16_t img[8][8]) {
+	for(int ii=0;ii<8;ii++) {
+		for(int jj=0;jj<8;jj++) {
+			LEDMatrix::fb->pixel[ii][jj] = img[ii][jj];
+		}
+	}
+}
+
+/* Shows an RGB image with 24bit colour depth (first converts it into 16bit deep)
+ * The input array should be an 8x8 array of 3 long uint8_t arrays, encoding the value of each pixel */
+void LEDMatrix::showImage(uint8_t img[8][8][3]) {
+	uint16_t red16bits, green16bits, blue16bits;
+	for(int ii=0;ii<8;ii++) {
+		for(int jj=0;jj<8;jj++) {
+			/* Will not overflow, since an 8bit number multiplied by 31 is at most 13 bits long */
+			red16bits = ((img[ii][jj][0]*31)/255);		//31:max value of a 5bit number; 255:max value for an 8bit number; note that the multiplication is first
+			green16bits = ((img[ii][jj][1]*63)/255);	//63:max value of a 6bit number; 255:max value for an 8bit number; note that the multiplication is first
+			blue16bits = ((img[ii][jj][2]*31)/255);		//31:max value of a 5bit number; 255:max value for an 8bit number; note that the multiplication is first
+			LEDMatrix::fb->pixel[ii][jj] = ((red16bits<<11)|(green16bits<<5)|blue16bits);
+		}
+	}
+}
+
 /* The following two functons were copied from the example code snake.c that comes with RTIMULib: */
 
 int is_framebuffer_device(const struct dirent *dir) {

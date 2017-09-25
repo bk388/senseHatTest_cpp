@@ -30,8 +30,8 @@ class LEDMatrix {
 public:
 	LEDMatrix();
 	~LEDMatrix();
-	/*void setScreen(uint16_t img[8][8]);
-	void showImage(uint16_t img[8][8][3]);*/
+	void setScreen(uint16_t img[8][8]);
+	void showImage(uint8_t img[8][8][3]);
 	void setPixel(int xCoord, int yCoord, uint16_t value);
 	void setRGBPixel(int xCoord, int yCoord, uint8_t red, uint8_t green, uint8_t blue);
 private:
