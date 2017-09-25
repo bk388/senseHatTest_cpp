@@ -11,7 +11,7 @@ CFLAGS          = -I$(INCPATH)
 _DEPS		= 
 DEPS		= $(patsubst %,$(INCPATH)/%,$(_DEPS))
 _OBJ		= main.o
-OBJ		= $(patsubst %,$(OBJPATH)/%,$(_OBJ))
+OBJ			= $(patsubst %,$(OBJPATH)/%,$(_OBJ))
 
 $(OBJPATH)/%.o : %.cpp $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)

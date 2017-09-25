@@ -5,14 +5,9 @@
 // Copyright   : 
 // Description : Main function for the project senseHatTest_cpp
 //============================================================================
-#ifndef _GNU_SOURCE
-#define _GNU_SOURCE
-#endif //_GNU_SOURCE
-#define DEV_FB "/dev"
-#define FB_DEV_NAME "fb"
 
 #include "RTIMULib.h"
-#include "ledMatrix.h"
+//#include "ledMatrix.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
