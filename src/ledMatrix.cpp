@@ -54,5 +54,5 @@ void LEDMatrix::showImage(uint16_t img[8][8][3]) {
 void LEDMatrix::*/
 
 void LEDMatrix::closeScreen() {
-	close(LEDMatrix::fd);
+	close(LEDMatrix::fb);
 }
