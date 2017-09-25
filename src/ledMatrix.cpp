@@ -17,7 +17,20 @@
 #include "ledMatrix.h"
 
 LEDMatrix::LEDMatrix() {
-	return;
+	LEDMatrix::fbfd = 0;
+	LEDMatrix::fbfd = open_fbdev("RPi-Sense FB");
+	if (LEDMatrix::fbfd <= 0) {
+		printf("Error: cannot open framebuffer device.\n");
+		return;
+	}
+
+	LEDMatrix::fb = mmap(0, 128, PROT_READ | PROT_WRITE, MAP_SHARED, LEDMatrix::fbfd, 0);
+	if (!LEDMatrix::fb) {
+		printf("Failed to mmap.\n");
+		close(LEDMatrix::fbfd);
+		return;
+	}
+	memset(LEDMatrix::fb, 0, 128);
 }
 
 int is_framebuffer_device(const struct dirent *dir) {
