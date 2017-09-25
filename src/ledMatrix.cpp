@@ -10,7 +10,9 @@
 #include <poll.h>
 #include <dirent.h>
 #include <string.h>
+
 #include <linux/input.h>
+#include <linux/fb.h>
 
 struct fb_t {
 	uint16_t pixel[8][8];
