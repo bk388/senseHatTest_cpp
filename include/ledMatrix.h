@@ -14,6 +14,10 @@
 #include <dirent.h>
 #include <string.h>
 
+struct fb_t {
+	uint16_t pixel[8][8];
+};
+
 int is_framebuffer_device(const struct dirent *dir) {
 	return strncmp(FB_DEV_NAME, dir->d_name, strlen(FB_DEV_NAME)-1) == 0;
 }

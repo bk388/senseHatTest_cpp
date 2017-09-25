@@ -9,10 +9,6 @@
 #include <dirent.h>
 #include <string.h>
 
-struct fb_t {
-	uint16_t pixel[8][8];
-};
-
 LEDMatrix::LEDMatrix() {
 	LEDMatrix::fbfd = 0;
 	LEDMatrix::fbfd = open_fbdev("RPi-Sense FB");
