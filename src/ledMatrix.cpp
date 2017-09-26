@@ -68,15 +68,6 @@ void LEDMatrix::showImage(uint8_t img[8][8][3]) {
 	}
 }
 
-/* Draws a 'length' long segment from the point (origin[0], origin[1]), the angle between the segment and the positive half x axis is 'angle' (given in radians),
- * and RGB colour 'colour'. Smoothness is a parameter that allows controlling the width of the segment.
- * The brightness of the LEDs are controlled using normal distribution (as a function of the distance from the segment)
- */
-void LEDMatrix::drawLine(float origin[2], double angle, float length, uint8_t colour[3], double smoothness) {
-	//TODO
-}
-
-
 /* The following two functons were copied from the example code snake.c that comes with RTIMULib: */
 
 int is_framebuffer_device(const struct dirent *dir) {
