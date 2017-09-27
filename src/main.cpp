@@ -16,11 +16,12 @@
 LEDMatrix ledMat;
 
 static void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double smoothness);
+static float stringToNum(char* inptString);
 
 int main(int argc, char* args[]) {
 	float origin[2] = {3.5,3.5};
 	uint8_t colour[3] = {255, 255, 255};
-	while(1) {
+	/*while(1) {
 		uint8_t image[8][8][3];
 		for(int ii=0;ii<8;ii++) {
 			image[ii][0][0] = 0xff;
@@ -40,7 +41,8 @@ int main(int argc, char* args[]) {
 			image[7][ii][2] = 0xff;
 		}
 		drawLine(origin, CONST_PI/4.0, 5, colour, 1000);
-	}
+	}*/
+	printf("%f\n", stringToNum(args[1]));
 }
 
 static void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double sharpness) {
@@ -70,4 +72,22 @@ static void drawLine(float origin[2], double angle, float length, uint8_t colour
 			ledMat.setRGBPixel(ii, jj, pxColour[0], pxColour[1], pxColour[2]);
 		}
 	}
+}
+
+static float stringToNum(char* inptString) {
+	float outptNum = 0;
+	signed int dotPosition = -1;
+	for(int ii=0,(uint8_t)(*(inptString[ii]))!=0,ii++){
+		if( ((uint8_t)(*(inptString[ii])) >= 48) &&
+			((uint8_t)(*(inptString[ii])) <= 57)	) {
+			if(dotPosition<0) {
+				outptNum = outptNum*10 + ((uint8_t)(*(inptString[ii]))) - 48;
+			} else {
+				outptNum += ((uint8_t)(*(inptString[ii])))/(pow(10.0, ii-dotPosition));
+			}
+		} else if( (uint8_t)(*(inptString[ii])) == 46) ) {
+			dotPosition = ii;
+		}
+	}
+	return outptNum;
 }
