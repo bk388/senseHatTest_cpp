@@ -48,7 +48,7 @@ int main(int argc, char* args[]) {
 }
 
 static void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double sharpness) {
-	float distance;
+	double distance;
 	uint8_t pxColour[3];
 	uint16_t red16bits, green16bits, blue16bits;
 	float direction[2];
@@ -64,9 +64,9 @@ static void drawLine(float origin[2], double angle, float length, uint8_t colour
 				distance = (float)sqrt(pow(relPxPos[0], 2) + pow(relPxPos[1], 2));
 			} else if( (float)sqrt(pow(relPxPos[0], 2) + pow(relPxPos[1], 2)) > length ) {
 				/* The pixel is further from the origin than the endpoint of the vector */
-				distance = (float)sqrt(pow(relPxPos[0]-(direction[0]*length), 2) + pow(relPxPos[1]-(direction[1]*length), 2));
+				distance = sqrt(pow(relPxPos[0]-(direction[0]*length), 2) + pow(relPxPos[1]-(direction[1]*length), 2));
 			} else {
-				distance = abs( (relPxPos[0]*direction[1])-(relPxPos[1]*direction[0]) );
+				distance = abs( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) );
 			}
 			pxColour[0] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[0]);
 			pxColour[1] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[1]);
