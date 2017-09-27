@@ -65,8 +65,8 @@ static void drawLine(float origin[2], double angle, float length, uint8_t colour
 				distance = abs( (relPxPos[0]*direction[1])-(relPxPos[1]*direction[0]) );
 			}
 			pxColour[0] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[0]);
-			pxColour[1] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance/sharpness))) * colour[1]);
-			pxColour[2] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance/sharpness))) * colour[2]);
+			pxColour[1] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[1]);
+			pxColour[2] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[2]);
 			ledMat.setRGBPixel(ii, jj, pxColour[0], pxColour[1], pxColour[2]);
 		}
 	}
