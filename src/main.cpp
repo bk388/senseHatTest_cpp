@@ -45,7 +45,6 @@ int main(int argc, char* args[]) {
 		}
 		drawLine(origin, stringToNum(args[3])*CONST_PI/180.0, 5, colour, stringToNum(args[4]));
 	}
-	//printf("%f\n", stringToNum(args[1]));
 }
 
 static void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double sharpness) {
@@ -68,17 +67,11 @@ static void drawLine(float origin[2], double angle, float length, uint8_t colour
 				distance = sqrt(pow(relPxPos[0]-(direction[0]*length), 2) + pow(relPxPos[1]-(direction[1]*length), 2));
 			} else {
 				distance = doubleAbsVal( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) );
-				printf("echo: %f; %f; %f; %f; %f\n", (double)relPxPos[0]*(double)direction[1], (double)relPxPos[1]*(double)direction[0],
-						( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) ),
-						doubleAbsVal( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) ), distance);
 			}
 			pxColour[0] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[0]);
 			pxColour[1] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[1]);
 			pxColour[2] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[2]);
 			ledMat.setRGBPixel(ii, jj, pxColour[0], pxColour[1], pxColour[2]);
-			if(pxColour[0]>=100){
-				printf("vector direction: (%f;%f)\nrelative coordinates: (%f;%f)\ndistnace: %f\n\n", direction[0], direction[1], relPxPos[0], relPxPos[1], distance);
-			}
 		}
 	}
 }
