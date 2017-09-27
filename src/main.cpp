@@ -39,11 +39,11 @@ int main(int argc, char* args[]) {
 			image[7][ii][1] = 0xff;
 			image[7][ii][2] = 0xff;
 		}
-		drawLine(origin, CONST_PI/4.0, 5, colour, 0.01);
+		drawLine(origin, CONST_PI/4.0, 5, colour, 1000);
 	}
 }
 
-static void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double smoothness) {
+static void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double sharpness) {
 	float distance;
 	uint8_t pxColour[3];
 	uint16_t red16bits, green16bits, blue16bits;
@@ -64,9 +64,9 @@ static void drawLine(float origin[2], double angle, float length, uint8_t colour
 			} else {
 				distance = abs( (relPxPos[0]*direction[1])-(relPxPos[1]*direction[0]) );
 			}
-			pxColour[0] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance/smoothness))) * colour[0]);
-			pxColour[1] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance/smoothness))) * colour[1]);
-			pxColour[2] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance/smoothness))) * colour[2]);
+			pxColour[0] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[0]);
+			pxColour[1] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance/sharpness))) * colour[1]);
+			pxColour[2] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance/sharpness))) * colour[2]);
 			ledMat.setRGBPixel(ii, jj, pxColour[0], pxColour[1], pxColour[2]);
 		}
 	}
