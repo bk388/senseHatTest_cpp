@@ -17,6 +17,7 @@ LEDMatrix ledMat;
 
 static void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double smoothness);
 static float stringToNum(char* inptString);
+static double doubleAbsVal(double num);
 
 int main(int argc, char* args[]) {
 	float origin[2];
@@ -66,10 +67,10 @@ static void drawLine(float origin[2], double angle, float length, uint8_t colour
 				/* The pixel is further from the origin than the endpoint of the vector */
 				distance = sqrt(pow(relPxPos[0]-(direction[0]*length), 2) + pow(relPxPos[1]-(direction[1]*length), 2));
 			} else {
-				distance = abs( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) );
+				distance = doubleAbsVal( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) );
 				printf("echo: %f; %f; %f; %f; %f\n", (double)relPxPos[0]*(double)direction[1], (double)relPxPos[1]*(double)direction[0],
 						( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) ),
-						abs( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) ), distance);
+						doubleAbsVal( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) ), distance);
 			}
 			pxColour[0] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[0]);
 			pxColour[1] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[1]);
@@ -98,4 +99,11 @@ static float stringToNum(char* inptString) {
 		}
 	}
 	return outptNum;
+}
+
+static double doubleAbsVal(double num) {
+	if(num < 0) {
+		return (float)-1.0*num;
+	}
+	return num;
 }
