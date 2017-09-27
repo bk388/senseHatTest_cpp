@@ -14,7 +14,7 @@
 
 LEDMatrix ledMat;
 
-void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double smoothness);
+static void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double smoothness);
 
 int main(int argc, char* args[]) {
 	while(1) {
@@ -36,11 +36,11 @@ int main(int argc, char* args[]) {
 			image[7][ii][1] = 0xff;
 			image[7][ii][2] = 0xff;
 		}
-		drawLine([4.5,4.5],3.141593/4.0, 5, [255, 255, 255], 1);
+		drawLine({4.5,4.5},3.141593/4.0, 5, {255, 255, 255}, 1);
 	}
 }
 
-void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double smoothness) {
+static void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double smoothness) {
 	float distance;
 	uint8_t pxColour[3];
 	uint16_t red16bits, green16bits, blue16bits;
