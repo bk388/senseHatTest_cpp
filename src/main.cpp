@@ -85,7 +85,7 @@ static float stringToNum(char* inptString) {
 			} else {
 				outptNum += ((uint8_t)inptString[ii])/(pow(10.0, ii-dotPosition));
 			}
-		} else if( ((uint8_t)inptString[ii]) == 46) ) {
+		} else if( ((uint8_t)inptString[ii]) == 46 ) {
 			dotPosition = ii;
 		}
 	}
