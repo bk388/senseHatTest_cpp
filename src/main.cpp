@@ -36,7 +36,7 @@ int main(int argc, char* args[]) {
 			image[7][ii][1] = 0xff;
 			image[7][ii][2] = 0xff;
 		}
-		ledMat.showImage(image);
+		drawLine([4.5,4.5],3.141593/4.0, 5, [255, 255, 255], 1);
 	}
 }
 
