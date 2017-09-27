@@ -77,7 +77,7 @@ static void drawLine(float origin[2], double angle, float length, uint8_t colour
 static float stringToNum(char* inptString) {
 	float outptNum = 0;
 	signed int dotPosition = -1;
-	for(int ii=0,((uint8_t)inptString[ii])!=0,ii++){
+	for(int ii=0;((uint8_t)inptString[ii])!=0;ii++){
 		if( (((uint8_t)inptString[ii]) >= 48) &&
 			(((uint8_t)inptString[ii]) <= 57)	) {
 			if(dotPosition<0) {
