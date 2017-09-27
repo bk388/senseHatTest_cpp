@@ -73,7 +73,7 @@ static void drawLine(float origin[2], double angle, float length, uint8_t colour
 			pxColour[2] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[2]);
 			ledMat.setRGBPixel(ii, jj, pxColour[0], pxColour[1], pxColour[2]);
 			if(pxColour[0]>=100){
-				printf("vector direction: (%f;%f)\nrelative coordinates: (%f;%f)\ndistnace: %f\n\n", irection[0], direction[1], relPxPos[0], relPxPos[1], distance);
+				printf("vector direction: (%f;%f)\nrelative coordinates: (%f;%f)\ndistnace: %f\n\n", direction[0], direction[1], relPxPos[0], relPxPos[1], distance);
 			}
 		}
 	}
