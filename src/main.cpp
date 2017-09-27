@@ -40,18 +40,18 @@ int main(int argc, char* args[]) {
 	}
 }
 
-void drawLine(signed float origin[2], signed double angle, float length, uint8_t colour[3], double smoothness) {
+void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double smoothness) {
 	float distance;
 	uint8_t pxColour[3];
 	uint16_t red16bits, green16bits, blue16bits;
-	signed float direction[2];
-	signed float relPxPos[2];
-	direction[0] = ((signed float)cos(angle));
-	direction[1] = ((signed float)sin(angle));
+	float direction[2];
+	float relPxPos[2];
+	direction[0] = ((float)cos(angle));
+	direction[1] = ((float)sin(angle));
 	for(int ii=0;ii<8;ii++) {
 		for(int jj=0;jj<8;jj++) {
-			relPxPos[0] = (signed float)ii - origin[0];
-			relPxPos[1] = (signed float)jj - origin[1];
+			relPxPos[0] = (float)ii - origin[0];
+			relPxPos[1] = (float)jj - origin[1];
 			if(relPxPos[0]*direction[0] + relPxPos[1]*direction[1] <= 0) {
 				/* The angle between the vector and the position vector of the pixel is more than 90° */
 				distance = (float)sqrt(pow(relPxPos[0], 2) + pow(relPxPos[1], 2));
@@ -61,9 +61,9 @@ void drawLine(signed float origin[2], signed double angle, float length, uint8_t
 			} else {
 				distance = abs( (relPxPos[0]*direction[1])-(relPxPos[1]*direction[0]) );
 			}
-			pxColour[0] = (uint8_t)(pow(EULER_NUM, (signed float)-1.0*((signed float)(distance/smoothness))) * colour[0]);
-			pxColour[1] = (uint8_t)(pow(EULER_NUM, (signed float)-1.0*((signed float)(distance/smoothness))) * colour[1]);
-			pxColour[2] = (uint8_t)(pow(EULER_NUM, (signed float)-1.0*((signed float)(distance/smoothness))) * colour[2]);
+			pxColour[0] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance/smoothness))) * colour[0]);
+			pxColour[1] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance/smoothness))) * colour[1]);
+			pxColour[2] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance/smoothness))) * colour[2]);
 			ledMat.setRGBPixel(ii, jj, pxColour[0], pxColour[1], pxColour[2]);
 		}
 	}
