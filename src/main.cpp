@@ -8,6 +8,7 @@
 
 #include "RTIMULib.h"
 #include "ledMatrix.h"
+#include <math.h>
 
 #define EULER_NUM (float)2.71828
 
