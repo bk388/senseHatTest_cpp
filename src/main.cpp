@@ -9,6 +9,7 @@
 #include "RTIMULib.h"
 #include "ledMatrix.h"
 #include <math.h>
+#include <tgmath.h>
 
 #define EULER_NUM (float)2.71828
 #define CONST_PI (float)3.141592654
@@ -66,10 +67,10 @@ static void drawLine(float origin[2], double angle, float length, uint8_t colour
 				/* The pixel is further from the origin than the endpoint of the vector */
 				distance = sqrt(pow(relPxPos[0]-(direction[0]*length), 2) + pow(relPxPos[1]-(direction[1]*length), 2));
 			} else {
-				distance = abs( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) );
+				distance = fabs( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) );
 				printf("echo: %f; %f; %f; %f; %f\n", (double)relPxPos[0]*(double)direction[1], (double)relPxPos[1]*(double)direction[0],
 						( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) ),
-						abs( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) ), distance);
+						fabs( ((double)relPxPos[0]*(double)direction[1])-((double)relPxPos[1]*(double)direction[0]) ), distance);
 			}
 			pxColour[0] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[0]);
 			pxColour[1] = (uint8_t)(pow(EULER_NUM, (float)-1.0*((float)(distance*sharpness))) * colour[1]);
