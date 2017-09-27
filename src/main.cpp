@@ -19,8 +19,10 @@ static void drawLine(float origin[2], double angle, float length, uint8_t colour
 static float stringToNum(char* inptString);
 
 int main(int argc, char* args[]) {
-	float origin[2] = {3.5,3.5};
+	float origin[2];
 	uint8_t colour[3] = {255, 255, 255};
+	origin[0] = stringToNum(args[1]);
+	origin[1] = stringToNum(args[2]);
 	while(1) {
 		uint8_t image[8][8][3];
 		for(int ii=0;ii<8;ii++) {
@@ -40,7 +42,7 @@ int main(int argc, char* args[]) {
 			image[7][ii][1] = 0xff;
 			image[7][ii][2] = 0xff;
 		}
-		drawLine(origin, CONST_PI/4.0, 5, colour, stringToNum(args[1]));
+		drawLine(origin, stringToNum(args[3])*CONST_PI/180.0, 5, colour, stringToNum(args[4]));
 	}
 	//printf("%f\n", stringToNum(args[1]));
 }
