@@ -39,7 +39,7 @@ int main(int argc, char* args[]) {
 			image[7][ii][1] = 0xff;
 			image[7][ii][2] = 0xff;
 		}
-		drawLine(origin, CONST_PI/4.0, 5, colour, 1);
+		drawLine(origin, CONST_PI/4.0, 5, colour, 0.5);
 	}
 }
 
