@@ -11,12 +11,15 @@
 #include <math.h>
 
 #define EULER_NUM (float)2.71828
+#define CONST_PI (float)3.141592654
 
 LEDMatrix ledMat;
 
 static void drawLine(float origin[2], double angle, float length, uint8_t colour[3], double smoothness);
 
 int main(int argc, char* args[]) {
+	float origin[2] = {4.5,4.5};
+	uint8_t colour[3] = {255, 255, 255};
 	while(1) {
 		uint8_t image[8][8][3];
 		for(int ii=0;ii<8;ii++) {
@@ -36,7 +39,7 @@ int main(int argc, char* args[]) {
 			image[7][ii][1] = 0xff;
 			image[7][ii][2] = 0xff;
 		}
-		drawLine({4.5,4.5},3.141593/4.0, 5, {255, 255, 255}, 1);
+		drawLine(origin, CONST_PI/4.0, 5, colour, 1);
 	}
 }
 
