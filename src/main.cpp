@@ -27,11 +27,11 @@ static float stringToNum(char* inptString);
 static double doubleAbsVal(double num);
 
 int main(int argc, char* args[]) {
-	float origin[2];
+	/*float origin[2];
 	uint8_t colour[3] = {255, 255, 255};
 	origin[0] = stringToNum(args[1]);
 	origin[1] = stringToNum(args[2]);
-	/*while(1) {
+	while(1) {
 		uint8_t image[8][8][3];
 		for(int ii=0;ii<8;ii++) {
 			image[ii][0][0] = 0xff;
