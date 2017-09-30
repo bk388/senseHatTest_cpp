@@ -52,6 +52,7 @@ int main(int argc, char* args[]) {
 		}
 		drawLine(origin, stringToNum(args[3])*CONST_PI/180.0, 5, colour, stringToNum(args[4]));
 	}*/
+	printf("Starting\n");
 	inquiry_info *ii = NULL;
 	int max_rsp, num_rsp;
 	int dev_id, sock, len, flags;
@@ -65,7 +66,7 @@ int main(int argc, char* args[]) {
 		perror("opening socket");
 		exit(1);
 	}
-
+	printf("Checkpoint1\n");
 	len  = 8;
 	max_rsp = 255;
 	flags = IREQ_CACHE_FLUSH;
