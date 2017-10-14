@@ -126,8 +126,8 @@ int main(int argc, char* args[]) {
 	// allocate a socket
 	s = socket(AF_BLUETOOTH, SOCK_SEQPACKET, BTPROTO_L2CAP);
 	// set the connection parameters (who to connect to)
-	addr.l2_family = AF_BLUETOOTH;
-	addr.l2_psm = htobs(0x1001);
+	sa12socketAddress.l2_family = AF_BLUETOOTH;
+	sa12socketAddress.l2_psm = htobs(0x1001);
 	str2ba( dest, &sa12socketAddress.l2_bdaddr );
 	// connect to server
 	status = connect(s, (struct sockaddr *)&sa12socketAddress, sizeof(sa12socketAddress));
