@@ -132,8 +132,10 @@ int main(int argc, char* args[]) {
 	// connect to server
 	status = connect(s, (struct sockaddr *)&sa12socketAddress, sizeof(sa12socketAddress));
 	// send a message
-	if( status == 0 ) {
+	if(status == 0) {
 		status = write(s, "hello!", 6);
+	}else {
+		printf("Failed to connect\n");
 	}
 	close(s);
 
