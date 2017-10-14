@@ -67,6 +67,9 @@ int main(int argc, char* args[]) {
 
 	bool nameFound = true;
 	bdaddr_t rem_bdaddr;
+	for(int jj=0,jj<6,jj++) {
+		rem_bdaddr.b[jj] = (uint8_t)0;
+	}
 
 	dev_id = hci_get_route(NULL);
 	sock = hci_open_dev( dev_id );
