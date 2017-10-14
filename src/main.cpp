@@ -91,7 +91,8 @@ int main(int argc, char* args[]) {
 		}
 		if(argc>1) {
 			nameFound = true;
-			for(int jj=0, (uint8_t)args[1][jj] != (uint8_t)0, jj++) {
+			int jj = 0;
+			while((uint8_t)args[1][jj] != (uint8_t)0) {
 				if(jj>=248) {
 					nameFound = false;
 					break;
@@ -106,6 +107,7 @@ int main(int argc, char* args[]) {
 					nameFound = false;
 					break;
 				}
+				jj ++;
 			}
 		}
 		printf("%s  %s  %d\n", addr, name, nameFound);
