@@ -118,7 +118,7 @@ int main(int argc, char* args[]) {
 		}
 	}
 	ba2str(&rem_bdaddr, addr);
-	printf("%s\n", addr)
+	printf("%s\n", addr);
 	free( ii );
 	close( sock );
 	return 0;
