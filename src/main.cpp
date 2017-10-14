@@ -113,7 +113,7 @@ int main(int argc, char* args[]) {
 		}
 		printf("%s  %s  %d\n", addr, name, nameFound);
 		if(nameFound) {
-			rem_bdaddr = &(ii+i)->bdaddr;
+			rem_bdaddr = (ii+i)->bdaddr;
 			break;
 		}
 	}
