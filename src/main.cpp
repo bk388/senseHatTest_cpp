@@ -66,6 +66,7 @@ int main(int argc, char* args[]) {
 	int opt = sizeof(rem_addr);
 
 	bool nameFound = true;
+	struct bdaddr_t rem_bdaddr;
 
 	dev_id = hci_get_route(NULL);
 	sock = hci_open_dev( dev_id );
@@ -112,10 +113,12 @@ int main(int argc, char* args[]) {
 		}
 		printf("%s  %s  %d\n", addr, name, nameFound);
 		if(nameFound) {
+			rem_bdaddr = &(ii+i)->bdaddr;
 			break;
 		}
 	}
-
+	ba2str(&rem_bdaddr, addr);
+	printf("%s\n", addr)
 	free( ii );
 	close( sock );
 	return 0;
