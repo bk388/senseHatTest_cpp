@@ -17,7 +17,7 @@
 #include <bluetooth/hci.h>
 #include <bluetooth/hci_lib.h>
 #include <math.h>
-#include <string>
+#include <string.h>
 
 #define EULER_NUM (float)2.71828
 #define CONST_PI (float)3.141592654
@@ -61,7 +61,7 @@ int main(int argc, char* args[]) {
 	char addr[19] = { 0 };
 	char name[248] = { 0 };
 	char* pchName = name;
-	string strName;
+	String strName;
 
 	struct sockaddr_l2 loc_addr = { 0 }, rem_addr = { 0 };
 	char buf[1024] = { 0 };
