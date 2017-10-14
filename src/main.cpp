@@ -60,7 +60,7 @@ int main(int argc, char* args[]) {
 	char addr[19] = { 0 };
 	char name[248] = { 0 };
 
-	struct sockaddr_l2 addr = { 0 };
+	struct sockaddr_l2 sa12socketAddress = { 0 };
 	int s, status;
 	char *message = "hello!";
 	char dest[18] = "01:23:45:67:89:AB";
