@@ -17,6 +17,7 @@
 #include <bluetooth/hci.h>
 #include <bluetooth/hci_lib.h>
 #include <math.h>
+#include <string.h>
 
 #define EULER_NUM (float)2.71828
 #define CONST_PI (float)3.141592654
@@ -59,11 +60,15 @@ int main(int argc, char* args[]) {
 	int i;
 	char addr[19] = { 0 };
 	char name[248] = { 0 };
+	char* pchName = name;
+	std::string strName;
 
 	struct sockaddr_l2 loc_addr = { 0 }, rem_addr = { 0 };
 	char buf[1024] = { 0 };
 	int s, client, bytes_read;
 	int opt = sizeof(rem_addr);
+
+	bool nameFound = true;
 
 	dev_id = hci_get_route(NULL);
 	sock = hci_open_dev( dev_id );
@@ -87,7 +92,13 @@ int main(int argc, char* args[]) {
 		if (hci_read_remote_name(sock, &(ii+i)->bdaddr, sizeof(name), name, 0) < 0) {
 			strcpy(name, "[unknown]");
 		}
-		printf("%s  %s  %d\n", addr, name, sizeof(name));
+		/*if(argc>1) {
+			nameFound = true;
+			for(int jj=0, (uint8_t)args[1][jj] != (uint8_t)0, jj++) {
+				if(args[1][jj] != name)
+			}
+		}*/
+		printf("%s  %s  %s\n", addr, name);
 	}
 
 	free( ii );
