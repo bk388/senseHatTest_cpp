@@ -61,7 +61,7 @@ int main(int argc, char* args[]) {
 	char addr[19] = { 0 };
 	char name[248] = { 0 };
 	char* pchName = name;
-	std::string strName;
+	string strName;
 
 	struct sockaddr_l2 loc_addr = { 0 }, rem_addr = { 0 };
 	char buf[1024] = { 0 };
