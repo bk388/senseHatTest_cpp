@@ -59,13 +59,11 @@ int main(int argc, char* args[]) {
 	int i;
 	char addr[19] = { 0 };
 	char name[248] = { 0 };
-	bool nameExist = false;
+
 	struct sockaddr_l2 loc_addr = { 0 }, rem_addr = { 0 };
 	char buf[1024] = { 0 };
 	int s, client, bytes_read;
 	int opt = sizeof(rem_addr);
-	char a = 'a';
-	char b = 'b';
 
 	dev_id = hci_get_route(NULL);
 	sock = hci_open_dev( dev_id );
@@ -89,12 +87,9 @@ int main(int argc, char* args[]) {
 		if (hci_read_remote_name(sock, &(ii+i)->bdaddr, sizeof(name), name, 0) < 0) {
 			strcpy(name, "[unknown]");
 		}
-		printf("%s  %s\n", addr, name);
+		printf("%s  %s  %s\n", addr, name, sizeof(name));
 	}
 
-	printf("%d\n", a == b);
-	b = 'a';
-	printf("%d\n", a == b);
 	free( ii );
 	close( sock );
 	return 0;
