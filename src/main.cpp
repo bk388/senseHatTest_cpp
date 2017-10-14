@@ -66,7 +66,7 @@ int main(int argc, char* args[]) {
 	int opt = sizeof(rem_addr);
 
 	bool nameFound = true;
-	struct bdaddr_t rem_bdaddr;
+	bdaddr_t rem_bdaddr;
 
 	dev_id = hci_get_route(NULL);
 	sock = hci_open_dev( dev_id );
