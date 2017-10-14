@@ -60,10 +60,10 @@ int main(int argc, char* args[]) {
 	char addr[19] = { 0 };
 	char name[248] = { 0 };
 
-	struct sockaddr_l2 loc_addr = { 0 }, rem_addr = { 0 };
-	char buf[1024] = { 0 };
-	int s, client, bytes_read;
-	int opt = sizeof(rem_addr);
+	struct sockaddr_l2 addr = { 0 };
+	int s, status;
+	char *message = "hello!";
+	char dest[18] = "01:23:45:67:89:AB";
 
 	bool nameFound = true;
 	bdaddr_t rem_bdaddr;
@@ -111,14 +111,14 @@ int main(int argc, char* args[]) {
 				jj ++;
 			}
 		}
-		printf("%s  %s  %d\n", addr, name, nameFound);
+		printf("%s  %s\n", addr, name, nameFound);
 		if(nameFound) {
 			rem_bdaddr = (ii+i)->bdaddr;
 			break;
 		}
 	}
-	ba2str(&rem_bdaddr, addr);
-	printf("%s\n", addr);
+	ba2str(&rem_bdaddr, dest);
+	printf("%s\n", dest);
 	free( ii );
 	close( sock );
 	return 0;
