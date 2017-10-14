@@ -67,7 +67,7 @@ int main(int argc, char* args[]) {
 
 	bool nameFound = true;
 	bdaddr_t rem_bdaddr;
-	for(int jj=0,jj<6,jj++) {
+	for(int jj=0;jj<6;jj++) {
 		rem_bdaddr.b[jj] = (uint8_t)0;
 	}
 
