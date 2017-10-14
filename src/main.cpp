@@ -17,7 +17,7 @@
 #include <bluetooth/hci.h>
 #include <bluetooth/hci_lib.h>
 #include <math.h>
-#include <string.h>
+#include <string>
 
 #define EULER_NUM (float)2.71828
 #define CONST_PI (float)3.141592654
